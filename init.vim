@@ -34,11 +34,13 @@ Plugin 'iCyMind/NeoSolarized'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'ryanoasis/vim-devicons'
 "Plugin 'tsony-tsonev/nerdtree-git-plugin'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,9 +62,11 @@ nmap <silent> gd <Plug>coc-definition()
 nmap <silent> gy <Plug>coc-type-definition()
 nmap <silent> gi <Plug>coc-implementation()
 nmap <silent> gr <Plug>coc-references()
-nnoremap <Esc> <Esc>:nohlsearch<CR>
+nnoremap <silent> <Esc> <Esc>:nohlsearch<CR>
 
 map <C-b> :NERDTreeToggle<CR>
+
+nmap <C-_> <plug>NERDCommenterInvert
 
 set tabstop=2 shiftwidth=2
 set softtabstop=2 expandtab smarttab
@@ -70,6 +74,8 @@ set cindent
 set foldmethod=indent
 
 set number relativenumber
+
+set updatetime=100
 
 set termguicolors
 
