@@ -38,6 +38,7 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'ryanoasis/vim-devicons'
 "Plugin 'tsony-tsonev/nerdtree-git-plugin'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -89,6 +90,8 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 inoremap jj <Esc>
 
 nnoremap <F5> :buffers<CR>:buffer<Space>
+
+nnoremap <C-p> :CtrlP<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
