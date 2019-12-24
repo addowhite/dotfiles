@@ -1,4 +1,4 @@
-set ff=unix
+"set ff=unix
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -34,22 +34,22 @@ nmap <C-_> <plug>NERDCommenterInvert
 
 set tabstop=2 shiftwidth=2
 set softtabstop=2 expandtab smarttab
-set cindent
-set foldmethod=indent
+set cindent nofoldenable foldmethod=indent
 
-set number relativenumber
+"set number relativenumber
 
 set updatetime=100
 
 set termguicolors
+set mouse=a
 
-let g:neosolarized_contrast = "high" " low/normal/high
-let g:neosolarized_visibility = "normal" " Whitespace visibility
-let g:neosolarized_vertSplitBgTrans = 0
-let g:neosolarized_bold = 1
-let g:neosolarized_underline = 1
-let g:neosolarized_italic = 0
-colorscheme NeoSolarized
+"let g:neosolarized_contrast = "high" " low/normal/high
+"let g:neosolarized_visibility = "normal" " Whitespace visibility
+"let g:neosolarized_vertSplitBgTrans = 0
+"let g:neosolarized_bold = 1
+"let g:neosolarized_underline = 1
+"let g:neosolarized_italic = 0
+"colorscheme NeoSolarized
 "colorscheme slate
 "colorscheme torte
 
@@ -59,7 +59,8 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 inoremap jj <Esc>
 
-nnoremap <F5> :buffers<CR>:buffer<Space>
+"nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <F5> :w<Enter> :! sbuild %<Enter>
 
 nnoremap <C-p> :CtrlP<CR>
 
