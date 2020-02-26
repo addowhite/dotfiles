@@ -4,6 +4,9 @@ filetype off                  " required
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'fenetikm/falcon'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -14,15 +17,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'fcpg/vim-fahrenheit'
 
 call plug#end()
 
 inoremap <silent> <expr> <c-space> coc#refresh()
-nmap <silent> gd <Plug>coc-definition()
+"nmap <silent> gd <Plug>coc-definition()
 nmap <silent> gy <Plug>coc-type-definition()
 nmap <silent> gi <Plug>coc-implementation()
 nmap <silent> gr <Plug>coc-references()
@@ -36,12 +39,20 @@ set tabstop=2 shiftwidth=2
 set softtabstop=2 expandtab smarttab
 set cindent nofoldenable foldmethod=indent
 
-"set number relativenumber
+set number relativenumber
 
 set updatetime=100
 
 set termguicolors
 set mouse=a
+"set mouse=
+
+set tags=./tags,/usr/include/tags
+
+"let g:falcon_lightline = 1
+"let g:lightline.colorscheme = 'falcon'
+"let g:falcon_airline = 1
+"let g:airline_theme = 'falcon'
 
 "let g:neosolarized_contrast = "high" " low/normal/high
 "let g:neosolarized_visibility = "normal" " Whitespace visibility
@@ -52,6 +63,9 @@ set mouse=a
 "colorscheme NeoSolarized
 "colorscheme slate
 "colorscheme torte
+"colorscheme falcon
+colorscheme OceanicNext
+"colorscheme onedark
 
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
                   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -62,9 +76,24 @@ inoremap jj <Esc>
 "nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <F5> :w<Enter> :! sbuild %<Enter>
 
+nmap <silent> gd :w<Enter><C-]>
+nmap <silent> <F12> :w<Enter><C-]>
+"nmap <C-_> <C-t>
+nmap <C-N> :set number! relativenumber!<Enter>
+
 nnoremap <C-p> :CtrlP<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+function FormatBuffer()
+  if !empty(findfile('.clang-format', expand('%:p:h;')))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+
+autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
