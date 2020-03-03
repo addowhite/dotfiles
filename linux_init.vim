@@ -36,7 +36,7 @@ set tabstop=2 shiftwidth=2
 set softtabstop=2 expandtab smarttab
 set cindent nofoldenable foldmethod=indent
 
-"set number relativenumber
+set number relativenumber
 
 set updatetime=100
 
@@ -68,3 +68,15 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" vim -b : edit binary using xxd-format!
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
+augroup END
