@@ -12,7 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'iCyMind/NeoSolarized'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -21,6 +21,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'fcpg/vim-fahrenheit'
+"Plug 'itchyny/lightline.vim'
+Plug 'vifm/vifm.vim'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -39,7 +42,7 @@ set tabstop=2 shiftwidth=2
 set softtabstop=2 expandtab smarttab
 set cindent nofoldenable foldmethod=indent
 
-set number relativenumber
+"set number relativenumber
 
 set updatetime=100
 
@@ -64,32 +67,51 @@ set tags=./tags,/usr/include/tags
 "colorscheme slate
 "colorscheme torte
 "colorscheme falcon
-colorscheme OceanicNext
-"colorscheme onedark
 
+"let g:lightline = { 'colorscheme': 'solarized_dark' }
+"colorscheme OceanicNext
+
+let g:lightline = { 'colorscheme': 'one' }
+colorscheme onedark
+
+"colorscheme 256_noir
+
+"set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+                  "\,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+                  "\,sm:block-blinkwait175-blinkoff150-blinkon175
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-                  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-                  \,sm:block-blinkwait175-blinkoff150-blinkon175
+                  \,a:Cursor/lCursor
+                  \,sm:block
 
 inoremap jj <Esc>
 
 "nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <F5> :w<Enter> :! sbuild %<Enter>
+"nnoremap <F5> :w<Enter> :! make test<Enter>
 
 nmap <silent> gd :w<Enter><C-]>
 nmap <silent> <F12> :w<Enter><C-]>
 "nmap <C-_> <C-t>
-nmap <C-N> :set number! relativenumber!<Enter>
+"nmap <C-N> :set number! relativenumber!<Enter>
 
 nnoremap <C-p> :CtrlP<CR>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-h> :tabp<CR>
+nnoremap <C-j> :tabc<CR>
+nnoremap <C-l> :tabn<CR>
+
+nnoremap <C-n> :tabnew<CR>
+
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 function FormatBuffer()
-  if !empty(findfile('.clang-format', expand('%:p:h;')))
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
     let cursor_pos = getpos('.')
     :%!clang-format
     call setpos('.', cursor_pos)
@@ -97,3 +119,5 @@ function FormatBuffer()
 endfunction
 
 autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+
+au BufReadPost *.br set syntax=c
