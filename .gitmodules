@@ -1,0 +1,24 @@
+[submodule ".vim/pack/plugins/start/nerdtree"]
+	path = .vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/pack/plugins/start/nerdtree-git-plugin"]
+	path = .vim/pack/plugins/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule ".vim/pack/plugins/start/ctrlp.vim"]
+	path = .vim/pack/plugins/start/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".vim/pack/plugins/start/onedark.vim"]
+	path = .vim/pack/plugins/start/onedark.vim
+	url = https://github.com/joshdick/onedark.vim.git
+[submodule ".vim/pack/plugins/start/vim-256noir"]
+	path = .vim/pack/plugins/start/vim-256noir
+	url = https://github.com/andreasvc/vim-256noir.git
+[submodule ".vim/pack/plugins/start/oceanic-next"]
+	path = .vim/pack/plugins/start/oceanic-next
+	url = https://github.com/mhartington/oceanic-next.git
+[submodule ".vim/pack/plugins/start/nerdcommenter"]
+	path = .vim/pack/plugins/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+[submodule ".vim/pack/plugins/start/vim-colors-solarized"]
+	path = .vim/pack/plugins/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
