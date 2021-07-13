@@ -1,6 +1,6 @@
 set -o vi
 alias ls="ls -hN --color=auto --group-directories-first"
-alias vim="nvim"
+#alias vim="nvim"
 alias cp="cp -i"
 alias df="df -h"
 alias free="free -m"
@@ -28,6 +28,10 @@ function video-flip() {
 
 function image-minify() {
   mogrify -quality 80% -resize 80% "$1"
+}
+
+function find() {
+  command find "$@" 2>/dev/null
 }
 
 # clear && neofetch
